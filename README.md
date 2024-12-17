@@ -17,7 +17,7 @@ React component for the [dayjs][dayjs] date library.
 Use npm to install `react-dayjs` as well as its peer dependency, `dayjs`.
 
 ```bash
-npm install --save dayjs react-dayjs
+npm install --save dayjs @startupquickstart/react-dayjs
 ```
 
 Then, import the package into your React project:
