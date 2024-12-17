@@ -2,27 +2,28 @@
 
 The react-dayjs component, DayJS, is a react component used for displaying, formatting, and manipulating dates utilizing the dayjs date library.
 
-* [Quick Start](#quick-start)
-* [Props](#props)
-    * [date](#date)
-    * [format](#format)
-    * [element](#element)
-    * [add](#add)
-    * [subtract](#subtract)
-    * [toJSON](#tojson)
-    * [toISOString](#toisostring)
-    * [asString](#asString)
-    * [unixSeconds](#unixseconds)
-    * [unixMilliseconds](#unixmilliseconds)
-    * [daysInMonth](#daysinmonth)
-    * [displayIsValid](#displayisvalid)
+- [Documentation](#documentation)
+  - [Quick Start](#quick-start)
+  - [Props](#props)
+    - [date](#date)
+    - [format](#format)
+    - [element](#element)
+    - [add](#add)
+    - [subtract](#subtract)
+    - [toJSON](#tojson)
+    - [toISOString](#toisostring)
+    - [asString](#asstring)
+    - [unixSeconds](#unixseconds)
+    - [unixMilliseconds](#unixmilliseconds)
+    - [daysInMonth](#daysinmonth)
+    - [displayIsValid](#displayisvalid)
 
 ## Quick Start
 Add the `DayJS` component to a component:
 
 ```jsx
 import React from 'react';
-import DayJS from 'react-dayjs';
+import DayJS from '@startupquickstart/react-dayjs';
 
 export default class MyComponent extends React.Component {
     render() {
@@ -126,7 +127,7 @@ This will output:
 ### toJSON
 _toJSON = { boolean }_
 
-Serializes a dayjs object to JSON, which returns an ISO8601 string. 
+Serializes a dayjs object to JSON, which returns an ISO8601 string.
 
 ```jsx
 <DayJS toJSON={ true }>2000-01-31T11:59:00-05:00</DayJS>
@@ -141,7 +142,7 @@ This will output:
 ### toISOString
 _toISOString = { boolean }_
 
-Formats a date to an ISO8601 string. 
+Formats a date to an ISO8601 string.
 
 ```jsx
 <DayJS toISOString={ true }>2000-01-31T11:59:00-05:00</DayJS>

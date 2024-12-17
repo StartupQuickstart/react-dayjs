@@ -24,7 +24,7 @@ Then, import the package into your React project:
 
 ```jsx
 import React from 'react';
-import DayJS from 'react-dayjs';
+import DayJS from '@startupquickstart/react-dayjs';
 
 export default class Application extends React.Component {
     ...
@@ -36,7 +36,7 @@ Add the `DayJS` component to a component:
 
 ```jsx
 import React from 'react';
-import DayJS from 'react-dayjs';
+import DayJS from '@startupquickstart/react-dayjs';
 
 export default class MyComponent extends React.Component {
     render() {
