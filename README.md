@@ -2,7 +2,7 @@
 
 React component for the [dayjs][dayjs] date library.
 
-![Node CI](https://github.com/startupquickstart/react-dayjs/workflows/Node%20CI/badge.svg) [![codecov](https://img.shields.io/codecov/c/github/startupquickstart/react-dayjs/master.svg?style=flat-square)](https://codecov.io/gh/startupquickstart/react-dayjs) ![npm](https://img.shields.io/npm/v/react-dayjs.svg?color=blue&style=flat-square) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/startupquickstart/react-dayjs/blob/master/LICENSE.md)
+![npm](https://img.shields.io/npm/v/react-dayjs.svg?color=blue&style=flat-square) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/startupquickstart/react-dayjs/blob/master/LICENSE.md)
 
 - [react-dayjs](#react-dayjs)
   - [Installing](#installing)
