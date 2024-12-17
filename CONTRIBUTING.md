@@ -7,7 +7,7 @@ Any contributions to this project are welcome! Before you open an issue or creat
 Ensure node and npm are installed. Clone the repository and install dependencies:
 
 ```bash
-git clone git@github.com:devshawn/react-dayjs.git
+git clone git@github.com:startupquickstart/react-dayjs.git
 cd react-dayjs
 npm install
 ```
@@ -49,4 +49,4 @@ npm run serve
 
 3. Add & modify tests as necessary. Also, ensure the code meets our style standards. Run the linter.
 
-4. Once changes are completed, open a pull request for review against the master branch. 
+4. Once changes are completed, open a pull request for review against the master branch.

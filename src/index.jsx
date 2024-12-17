@@ -126,7 +126,7 @@ const DayJS = (props) => {
 
     useEffect(() => {
         update(props)
-    }, [])
+    }, [props])
 
     const elementProps = objectKeyFilter(props, propTypes)
     return React.createElement(

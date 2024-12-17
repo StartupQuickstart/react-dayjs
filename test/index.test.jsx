@@ -1,4 +1,4 @@
-import DayJS from "../source/index"
+import DayJS from "../src/index"
 import React from "react"
 import dayjs from "dayjs"
 import { render } from '@testing-library/react'

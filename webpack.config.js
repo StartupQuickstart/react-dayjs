@@ -3,7 +3,7 @@
 const path = require("path")
 
 module.exports = {
-    entry: "./source/index.jsx",
+    entry: "./src/index.jsx",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "index.js",
@@ -36,7 +36,7 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                include: path.resolve(__dirname, "source"),
+                include: path.resolve(__dirname, "src"),
                 exclude: /(node_modules|bower_components|build)/,
                 use: {
                     loader: "babel-loader",

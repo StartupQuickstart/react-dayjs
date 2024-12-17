@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run clean && webpack -p",
     "clean": "rimraf ./dist/index.js",
-    "lint": "eslint source/*",
+    "lint": "eslint src/*",
     "serve": "webpack -p --watch",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devshawn/react-dayjs.git"
+    "url": "git+https://github.com/startupquickstart/react-dayjs.git"
   },
   "keywords": [
     "dayjs",
@@ -25,19 +25,19 @@
     "react-component"
   ],
   "author": {
-    "name": "Shawn Seymour",
-    "url": "https://devshawn.com"
+    "name": "Thomas Boles",
+    "url": "https://github.com/startupquickstart"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/devshawn/react-dayjs/issues"
+    "url": "https://github.com/startupquickstart/react-dayjs/issues"
   },
-  "homepage": "https://github.com/devshawn/react-dayjs#readme",
+  "homepage": "https://github.com/startupquickstart/react-dayjs#readme",
   "jest": {
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "source/*"
+      "src/*"
     ],
     "testURL": "http://localhost/"
   },
