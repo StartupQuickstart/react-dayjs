@@ -1,157 +1,132 @@
-import React, {
-    useEffect,
-    useState,
-} from "react"
-import PropTypes from "prop-types"
-import {
-    addToDate,
-    generateInitialDate,
-    subtractFromDate,
-    objectKeyFilter
-} from "./helpers"
+import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
+import dayjs from 'dayjs';
+import utcPlugin from 'dayjs/plugin/utc';
 
-const propTypes = {
-    element: PropTypes.any,
-    date: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.array,
-        PropTypes.object,
-    ]),
-    format: PropTypes.string,
-    toJSON: PropTypes.bool,
-    toISOString: PropTypes.bool,
-    asString: PropTypes.bool,
-    unixSeconds: PropTypes.bool,
-    unixMilliseconds: PropTypes.bool,
-    daysInMonth: PropTypes.bool,
-    displayIsValid: PropTypes.bool,
-    add: PropTypes.object,
-    subtract: PropTypes.object,
-    children: PropTypes.string,
-}
+// // Extend dayjs with the UTC plugin
+dayjs.extend(utcPlugin);
 
-const DayJS = (props) => {
-    const [state, setState] = useState({
-        value: "",
-    })
+export function DayJs({
+  element = 'time',
+  date,
+  format,
+  toJSON = false,
+  toISOString = false,
+  asString = false,
+  unixSeconds = false,
+  unixMilliseconds = false,
+  daysInMonth = false,
+  displayIsValid = false,
+  utc = false,
+  add,
+  subtract,
+  children,
+  ...props
+}) {
+  function addToDate(date, add) {
+    return Object.keys(add).reduce(
+      (updatedDate, key) => updatedDate.add(add[key], key),
+      date
+    );
+  }
 
-    const update = () => {
-        const {
-            date,
-            format,
-            children,
-            add,
-            subtract,
-            daysInMonth,
-            toJSON,
-            toISOString,
-            asString,
-            unixSeconds,
-            unixMilliseconds,
-            displayIsValid,
-        } = props
+  function subtractFromDate(date, subtract) {
+    return Object.keys(subtract).reduce(
+      (updatedDate, key) => updatedDate.subtract(subtract[key], key),
+      date
+    );
+  }
 
-        let dayjsDate = generateInitialDate(date, children)
+  const value = useMemo(() => {
+    let value = dayjs(children || date || undefined);
 
-        if (add) {
-            dayjsDate = addToDate(dayjsDate, add)
-        }
-
-        if (subtract) {
-            dayjsDate = subtractFromDate(dayjsDate, subtract)
-        }
-
-        if (displayIsValid) {
-            return setState(state => ({
-                ...state,
-                value: `${dayjsDate.isValid()}`,
-            }))
-        }
-
-        if (daysInMonth) {
-            return setState(state => ({
-                ...state,
-                value: dayjsDate.daysInMonth(),
-            }))
-        }
-
-        if (toJSON) {
-            return setState(state => ({
-                ...state,
-                value: dayjsDate.toJSON(),
-            }))
-        }
-
-        if (toISOString) {
-            return setState(state => ({
-                ...state,
-                value: dayjsDate.toISOString(),
-            }))
-        }
-
-        if (asString) {
-            return setState(state => ({
-                ...state,
-                value: dayjsDate.toString(),
-            }))
-        }
-
-        if (unixMilliseconds) {
-            return setState(state => ({
-                ...state,
-                value: dayjsDate.valueOf(),
-            }))
-        }
-
-        if (unixSeconds) {
-            return setState(state => ({
-                ...state,
-                value: dayjsDate.unix()
-            }))
-        }
-
-        if (format) {
-            return setState(state => ({
-                ...state,
-                value: dayjsDate.format(format),
-            }))
-        }
-
-        return setState(state => ({
-            ...state,
-            value: dayjsDate.format()
-        }))
+    if (utc) {
+      value = value.utc();
+    } else {
+      value = value.local();
     }
 
-    useEffect(() => {
-        update(props)
-    }, [props])
+    if (add) {
+      value = addToDate(value, add);
+    }
 
-    const elementProps = objectKeyFilter(props, propTypes)
-    return React.createElement(
-        props.element,
-        elementProps,
-        state.value
-    )
+    if (subtract) {
+      value = subtractFromDate(value, subtract);
+    }
+
+    if (displayIsValid) {
+      return `${value.isValid()}`;
+    }
+
+    if (daysInMonth) {
+      return value.daysInMonth();
+    }
+
+    if (toJSON) {
+      return value.toJSON();
+    }
+
+    if (toISOString) {
+      return value.toISOString();
+    }
+
+    if (asString) {
+      return value.toString();
+    }
+
+    if (unixMilliseconds) {
+      return value.valueOf();
+    }
+
+    if (unixSeconds) {
+      return value.unix();
+    }
+
+    if (format) {
+      return value.format(format);
+    }
+
+    return value.format();
+  }, [
+    date,
+    format,
+    toJSON,
+    toISOString,
+    asString,
+    unixSeconds,
+    unixMilliseconds,
+    utc,
+    daysInMonth,
+    displayIsValid,
+    add,
+    subtract,
+    children
+  ]);
+
+  const Element = element;
+  return <Element {...props}>{value}</Element>;
 }
 
-DayJS.propTypes = propTypes
+DayJs.propTypes = {
+  element: PropTypes.any,
+  date: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.object
+  ]),
+  format: PropTypes.string,
+  toJSON: PropTypes.bool,
+  toISOString: PropTypes.bool,
+  asString: PropTypes.bool,
+  unixSeconds: PropTypes.bool,
+  unixMilliseconds: PropTypes.bool,
+  daysInMonth: PropTypes.bool,
+  displayIsValid: PropTypes.bool,
+  utc: PropTypes.bool,
+  add: PropTypes.object,
+  subtract: PropTypes.object,
+  children: PropTypes.string
+};
 
-DayJS.defaultProps = {
-    element: "time",
-    date: null,
-    format: null,
-    toJSON: false,
-    toISOString: false,
-    asString: false,
-    unixSeconds: false,
-    unixMilliseconds: false,
-    daysInMonth: false,
-    displayIsValid: false,
-    add: null,
-    subtract: null,
-    children: null,
-}
-
-export default DayJS
+export default DayJs;
